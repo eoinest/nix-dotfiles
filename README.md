@@ -20,8 +20,8 @@ modules/home.nix   my packages and user settings (Home Manager)
    ```
 2. Clone this repo:
    ```sh
-   git clone https://github.com/eoinest/nix-dotfiles ~/Documents/dev/nix-dotfiles
-   cd ~/Documents/dev/nix-dotfiles
+   git clone https://github.com/eoinest/nix-dotfiles ~/dev/nix-dotfiles
+   cd ~/dev/nix-dotfiles
    ```
 3. Add the Mac to `darwinConfigurations` in `flake.nix` (its login name is `whoami`).
 4. First switch (installs `darwin-rebuild`):
