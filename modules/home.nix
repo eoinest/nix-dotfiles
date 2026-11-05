@@ -8,6 +8,7 @@
     pnpm
     git
     gh
+    uv
   ];
 
   # Terminal file manager: run `yazi`, press q to quit.
