@@ -7,6 +7,7 @@
   imports = [
     ./features/nvim
     ./features/ghostty.nix
+    ./features/yazi.nix
   ];
 
   home.packages = with pkgs; [
@@ -16,10 +17,6 @@
     gh
     uv
   ];
-
-  # Terminal file manager: run `yazi`, press q to quit.
-  # Settings: https://yazi-rs.github.io/docs/configuration/yazi
-  programs.yazi.enable = true;
 
   home.stateVersion = "26.05"; # set once at install; don't change
 }
