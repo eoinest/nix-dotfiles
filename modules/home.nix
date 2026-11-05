@@ -3,7 +3,10 @@
 # Find packages: https://search.nixos.org/packages
 { pkgs, ... }:
 {
-  imports = [ ./nvim ]; # Neovim: modules/nvim/
+  imports = [
+    ./nvim # Neovim: modules/nvim/
+    ./ghostty.nix
+  ];
 
   home.packages = with pkgs; [
     nodejs_24 # includes npm
