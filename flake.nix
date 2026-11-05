@@ -12,9 +12,10 @@
 
   outputs = { nix-darwin, home-manager, ... }:
     let
-      # Build one Mac from the shared modules. `user` is the macOS login name.
-      mkMac = user: nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit user; };
+      # Build one Mac from the shared modules.
+      # `host` is the name below (e.g. work-macbook); `user` is the macOS login name.
+      mkMac = host: user: nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit host user; };
         modules = [
           ./modules/darwin.nix
           home-manager.darwinModules.home-manager
@@ -23,11 +24,11 @@
       };
     in
     {
-      # One line per Mac. Apply with: sudo darwin-rebuild switch --flake .#<name>
-      darwinConfigurations = {
-        work-macbook = mkMac "ernestmccarter";
-        # mac-mini = mkMac "<login name>";
-        # personal-macbook = mkMac "<login name>";
+      # One line per Mac: name = "login name". Apply with the `rebuild` alias.
+      darwinConfigurations = builtins.mapAttrs mkMac {
+        work-macbook = "ernestmccarter";
+        # mac-mini = "<login name>";
+        # personal-macbook = "<login name>";
       };
     };
 }
