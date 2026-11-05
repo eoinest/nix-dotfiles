@@ -3,9 +3,10 @@
 # Find packages: https://search.nixos.org/packages
 { pkgs, ... }:
 {
+  # One file or folder per program, in modules/features/.
   imports = [
-    ./nvim # Neovim: modules/nvim/
-    ./ghostty.nix
+    ./features/nvim
+    ./features/ghostty.nix
   ];
 
   home.packages = with pkgs; [

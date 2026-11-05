@@ -6,6 +6,7 @@ My machines, set up with [Nix](https://nixos.org), [nix-darwin](https://github.c
 flake.nix          inputs, and the list of machines
 modules/darwin.nix macOS system settings (nix-darwin)
 modules/home.nix   my packages and user settings (Home Manager)
+modules/features/  one file or folder per program (nvim, ghostty, ...)
 ```
 
 - **Nix** builds packages and keeps them in `/nix/store`.
