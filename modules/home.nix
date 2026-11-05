@@ -14,5 +14,15 @@
   # Settings: https://yazi-rs.github.io/docs/configuration/yazi
   programs.yazi.enable = true;
 
+  # Neovim, with yazi in a floating window: press Space then - to open it.
+  programs.neovim = {
+    enable = true;
+    plugins = [ pkgs.vimPlugins.yazi-nvim ];
+    initLua = ''
+      vim.g.mapleader = " "
+      vim.keymap.set("n", "<leader>-", "<cmd>Yazi<cr>")
+    '';
+  };
+
   home.stateVersion = "26.05"; # set once at install; don't change
 }
