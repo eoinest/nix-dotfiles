@@ -27,7 +27,7 @@
       # One line per Mac: name = "login name". Apply with the `rebuild` alias.
       darwinConfigurations = builtins.mapAttrs mkMac {
         work-macbook = "ernestmccarter";
-        # mac-mini = "<login name>";
+        mac-mini = "ernest";
         # personal-macbook = "<login name>";
       };
     };
