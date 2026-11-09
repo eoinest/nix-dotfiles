@@ -15,4 +15,9 @@ root="$(cd -P "$(dirname "$0")/../.." && pwd -P)"
 git -C "$root" pull --ff-only --quiet \
   || echo "switch: git pull failed; using the local checkout as-is" >&2
 
-sudo darwin-rebuild switch --flake "$root#$1"
+# macOS uses darwin-rebuild; NixOS (the Pi) uses nixos-rebuild.
+if [ "$(uname)" = Darwin ]; then
+  sudo darwin-rebuild switch --flake "$root#$1"
+else
+  sudo nixos-rebuild switch --flake "$root#$1"
+fi

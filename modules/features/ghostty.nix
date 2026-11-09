@@ -5,6 +5,7 @@
   programs.ghostty = {
     enable = true;
     package = null; # the app is installed normally; Nix only manages its config
+    systemd.enable = false; # linux only (dont start a ghostty background service
     settings = {
       # Over SSH, other machines don't know Ghostty's terminal type, which
       # breaks Backspace and colors. ssh-terminfo copies it to the remote

@@ -61,5 +61,8 @@
   # Firmware partition mounts on demand, make sure it gets mounted first
   systemd.services.NetworkManager-ensure-profiles.unitConfig.RequiresMountsFor = "/boot/firmware";
 
+  # rebuild alias
+  environment.shellAliases.rebuild = "~/dev/nix-dotfiles/scripts/utils/switch.sh pi";
+
   system.stateVersion = "26.05";
 }

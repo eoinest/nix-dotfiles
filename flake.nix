@@ -33,7 +33,15 @@
         # personal-macbook = "<login name>";
       };
       nixosConfigurations.pi = nixos-raspberrypi.lib.nixosSystem {
-        modules = [ ./modules/pi.nix ];
+        modules = [
+          ./modules/pi.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.ernest = ./modules/home.nix;
+          }
+        ];
       };
     };
 }
