@@ -8,9 +8,11 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # No follows, raspberry pi has its own nixpkgs
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
-  outputs = { nix-darwin, home-manager, ... }:
+  outputs = { nix-darwin, home-manager, nixos-raspberrypi, ... }:
     let
       # Build one Mac from the shared modules.
       # `host` is the name below (e.g. work-macbook); `user` is the macOS login name.
@@ -29,6 +31,9 @@
         work-macbook = "ernestmccarter";
         mac-mini = "ernest";
         # personal-macbook = "<login name>";
+      };
+      nixosConfigurations.pi = nixos-raspberrypi.lib.nixosSystem {
+        modules = [ ./modules/pi.nix ];
       };
     };
 }
