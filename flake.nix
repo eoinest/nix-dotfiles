@@ -10,9 +10,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # No follows, raspberry pi has its own nixpkgs
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+    # Home manager match Pi NixOS
+    home-manager-pi.url = "github:nix-community/home-manager/release-26.05";
+    home-manager-pi.inputs.nixpkgs.follows = "nixos-raspberrypi/nixpkgs";
   };
 
-  outputs = { nix-darwin, home-manager, nixos-raspberrypi, ... }:
+  outputs = { nix-darwin, home-manager, nixos-raspberrypi, home-manager-pi, ... }:
     let
       # Build one Mac from the shared modules.
       # `host` is the name below (e.g. work-macbook); `user` is the macOS login name.
@@ -35,7 +38,7 @@
       nixosConfigurations.pi = nixos-raspberrypi.lib.nixosSystem {
         modules = [
           ./modules/pi.nix
-          home-manager.nixosModules.home-manager
+          home-manager-pi.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
