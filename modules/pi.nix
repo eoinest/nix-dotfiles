@@ -13,6 +13,9 @@
   networking.hostName = "pi";
   time.timeZone = "America/Los_Angeles";
 
+  # Have to enable some experimental features
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Users only come from this file
   users.mutableUsers = false;
   users.users.ernest = {
