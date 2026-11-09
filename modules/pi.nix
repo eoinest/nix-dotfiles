@@ -23,8 +23,9 @@
     ];
   };
 
-  # Remove once setup sops-nix
-  security.sudo.wheelNeedsPassword = false;
+  # check ssh key
+  security.pam.sshAgentAuth.enable = true;
+  security.pam.services.sudo.sshAgentAuth = true;
 
   # SSH: keys only, no passwords, no root login
   services.openssh = {
@@ -35,6 +36,9 @@
       PermitRootLogin = "no";
     };
   };
+
+  # Tailscale
+  services.tailscale.enable = true;
 
   # Wi-Fi
   networking.networkmanager = {
