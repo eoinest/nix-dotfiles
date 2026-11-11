@@ -8,6 +8,7 @@
     ./features/nvim
     ./features/ghostty.nix
     ./features/yazi.nix
+    ./features/languages.nix
   ];
 
   home.packages = with pkgs; [
